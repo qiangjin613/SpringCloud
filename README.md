@@ -1,1 +1,16 @@
 # SpringCloud
+
+## 1. 搭建父项目
+
+即外层的 pom.xml 文件，关注 packaging、properties 和 dependencyManagement 三个元素。
+
+注意：
+
+1. packaging 中，值 pom 与 jar、war 的区别；
+2. properties 中的“统一管理 jar 包版本”；
+3. dependencyManagement 与 dependencies 的区别。
+
+## 2.构建支付模块
+
+可简单分为以下几步：1）建 module；2）改 pom.xml；3）写 yum/properties；4）主启动；5）业务类。
+

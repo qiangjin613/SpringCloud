@@ -10,6 +10,11 @@
     <!-- 这里注意 pom 与 jar、war 的区别 -->
     <packaging>pom</packaging>
 
+    <!-- 父工程下的子模块 -->
+    <modules>
+        <module>cloud-provider-payment8001</module>
+    </modules>
+
     <!-- 统一管理 jar 包版本 -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
