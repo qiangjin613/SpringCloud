@@ -9,8 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 由于子工程继承父工程的 groupId、version，所以此处省略其定义 -->
-    <artifactId>cloud-provider-payment8001</artifactId>
+    <artifactId>cloud-consumer-order80</artifactId>
 
     <dependencies>
         <dependency>
@@ -44,5 +43,4 @@
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
-
 </project>
