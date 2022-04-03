@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@RestController("/payment")
+@RestController()
+@RequestMapping("/payment")
 public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
 
-    @PostMapping("/payment/create")
+    @PostMapping("/create")
     public CommonResult create(@RequestBody PaymentDo paymentDo) {
         int result = paymentService.crate(paymentDo);
         log.info("create result:{}", result);
@@ -25,7 +26,7 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("/payment/get/{id}")
+    @GetMapping("/get/{id}")
     public CommonResult<PaymentDo> getPaymentById(@PathVariable("id") Long id) {
         PaymentDo payment = paymentService.getPaymentById(id);
         if (payment != null) {
