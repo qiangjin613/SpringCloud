@@ -22,3 +22,23 @@
 
 ## 4. 构建公共模块：Common
 
+将微服务中各公共代码、工具类抽取至公共模块中。
+
+## 5. Eureka
+
+### 1）构建 Eureka Server
+
+主要步骤：1）建module；2）改 pom.xml；3）写 yum/properties；4）主启动；
+
+```xml
+pom.xml 仅需导入依赖：
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
+```
+
+启动类中标注：`@EnableEurekaServer`
+
+### 2）服务入驻
+
