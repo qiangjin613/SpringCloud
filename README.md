@@ -36,9 +36,23 @@ pom.xml 仅需导入依赖：
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 </dependency>
+
+启动类中标注：@EnableEurekaServer
 ```
 
-启动类中标注：`@EnableEurekaServer`
+### 2）Payment、Order 服务入驻
 
-### 2）服务入驻
+主要步骤：1）改 pom.xml；2）写 yum/properties；3）主启动；
+
+```xml
+添加依赖：
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+
+启动类中标注：@EnableEurekaClient
+```
+
+### 3）常见配置项解析
 

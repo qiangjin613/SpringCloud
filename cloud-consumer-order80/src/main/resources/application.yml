@@ -1,7 +1,9 @@
 server:
   port: 80
+
 spring:
   application:
+    # 这个也是入驻 Eureka Server 的实例名
     name: cloud-consumer-order-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -9,6 +11,17 @@ spring:
     url: jdbc:mysql://localhost:3306/mscloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
+
+eureka:
+  client:
+    # 是否将自己注册进 Eureka Server，默认为 true
+    register-with-eureka: true
+    # 是否从 Eureka Server 中抓取已有的注册信息，默认为 true
+    fetch-registry: true
+    service-url:
+      # 对于 Eureka Client，这里填 Eureka Server 的地址
+      defaultZone: http://localhost:7001/eureka/
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.qiangjin.springcloud.entities # 所有 Entity 别名类所在包

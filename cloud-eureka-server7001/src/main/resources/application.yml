@@ -6,9 +6,9 @@ eureka:
     # eureka 服务端的实例名称
     hostname: localhost
   client:
-    # 是否向注册中心注册自己：false表示不需要
+    # 是否向注册中心注册自己：false表示不需要，默认为 true
     register-with-eureka: false
-    # false 表示自己就是注册中心，其职责就是维护服务实例，并不需要去检索服务
+    # false 表示自己就是注册中心，其职责就是维护服务实例，并不需要去检索服务，默认为 true
     fetch-registry: false
     service-url:
       # 设置与 Eureka Server 交互的地址查询服务和注册服务都需要依赖这个地址
