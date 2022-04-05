@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    # eureka 服务端的实例名称
+    # Eureka Server 的实例名称
     hostname: localhost
   client:
     # 是否向注册中心注册自己：false表示不需要，默认为 true
