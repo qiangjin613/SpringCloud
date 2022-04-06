@@ -56,12 +56,12 @@ pom.xml 仅需导入依赖：
 
 ### 3）常见配置项解析
 
-| 配置项                                | 说明                                                         | 备注      |
-| ------------------------------------- | ------------------------------------------------------------ | --------- |
-| eureka.instance.hostname              | Eureka Server 的实例名称                                     |           |
-| eureka.client.register-with-eureka    | 是否向注册中心注册自己：1）Server 为 false；2）Client 为 true | 默认 true |
-| eureka.client.fetch-registry          | 是否从 Eureka Server 中抓取已有的注册信息：1）Server 为 false；2）Client 为 true | 默认 true |
-| eureka.client.service-url.defaultZone | 1）Server 为 `http://${eureka.instance.hostname}:${server.port}/eureka/`；2）Client 为 Eureka Server 的地址 |           |
-|                                       |                                                              |           |
-|                                       |                                                              |           |
+| 配置项                                | 说明                                                         | 备注                     |
+| ------------------------------------- | ------------------------------------------------------------ | ------------------------ |
+| eureka.instance.hostname              | Eureka Server 的实例名称                                     | 在集群中要写具体的实例名 |
+| eureka.client.register-with-eureka    | 是否向注册中心注册自己：1）Server 为 false；2）Client 为 true | 默认 true                |
+| eureka.client.fetch-registry          | 是否从 Eureka Server 中抓取已有的注册信息：1）Server 为 false；2）Client 为 true | 默认 true                |
+| eureka.client.service-url.defaultZone | 1）Server 为 `http://${eureka.instance.hostname}:${server.port}/eureka/`；2）Client 为 Eureka Server 的地址 |                          |
+|                                       |                                                              |                          |
+|                                       |                                                              |                          |
 

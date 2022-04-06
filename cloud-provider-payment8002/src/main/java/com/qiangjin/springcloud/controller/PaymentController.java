@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@RestController
+@RestController()
 @RequestMapping("/payment")
 public class PaymentController {
 
@@ -49,11 +49,9 @@ public class PaymentController {
 
     @GetMapping("/discovery")
     public Object discovery() {
-        /* 获取入驻 Eureka 的所有服务 */
         List<String> services = discoveryClient.getServices();
         for (String service : services) {
             log.info("*** element: " + service + " ***");
-            /* 根据具体服务名称获取服务信息 */
             List<ServiceInstance> instances = discoveryClient.getInstances(service);
             for (ServiceInstance instance : instances) {
                 log.info(instance.getServiceId() + "\t" + instance.getHost() + ":" + instance.getPort() + "\t" + instance.getUri());
