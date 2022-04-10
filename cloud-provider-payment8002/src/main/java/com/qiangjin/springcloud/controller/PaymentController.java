@@ -28,7 +28,7 @@ public class PaymentController {
 
     @PostMapping("/create")
     public CommonResult create(@RequestBody PaymentDo paymentDo) {
-        int result = paymentService.crate(paymentDo);
+        int result = 1;
         log.info("create result:{}", result);
         if (result > 0) {
             return new CommonResult(200, "成功，serverPort：" + serverPort, result);
@@ -39,7 +39,7 @@ public class PaymentController {
 
     @GetMapping("/get/{id}")
     public CommonResult<PaymentDo> getPaymentById(@PathVariable("id") Long id) {
-        PaymentDo payment = paymentService.getPaymentById(id);
+        PaymentDo payment = new PaymentDo(3L, "张三");;
         if (payment != null) {
             return new CommonResult<PaymentDo>(200, "成功，serverPort：" + serverPort, payment);
         } else {
@@ -58,5 +58,10 @@ public class PaymentController {
             }
         }
         return discoveryClient;
+    }
+
+    @GetMapping("/serverPort")
+    public String getServerPort() {
+        return serverPort;
     }
 }

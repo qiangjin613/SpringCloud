@@ -1,5 +1,9 @@
 # SpringCloud
 
+注意：
+
+1. 注意：当使用 Ribbon + RestTemplate 并且使用了负载均衡 `@LoadBalanced` 时，getForObject() 的 `String url` 参数不能为地址。否则，抛出：`java.lang.IllegalStateException: No instances available for 192.168.XXX.XXX` 异常！
+
 ## 1. 搭建父项目
 
 即外层的 pom.xml 文件，关注 packaging、properties 和 dependencyManagement 三个元素。
