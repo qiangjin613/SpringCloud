@@ -11,6 +11,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RestController()
@@ -47,6 +48,9 @@ public class PaymentController {
         }
     }
 
+    /**
+     * 服务发现 Demo
+     */
     @GetMapping("/discovery")
     public Object discovery() {
         List<String> services = discoveryClient.getServices();
@@ -62,6 +66,19 @@ public class PaymentController {
 
     @GetMapping("/serverPort")
     public String getServerPort() {
+        return serverPort;
+    }
+
+    /**
+     * 超时控制 Demo
+     */
+    @GetMapping("/timeout")
+    public String getTimeoutServerPort() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+        }
         return serverPort;
     }
 }

@@ -22,4 +22,7 @@ public interface PaymentFeignService {
 
     @GetMapping("/serverPort")
     String getServerPort();
+
+    @GetMapping("/timeout")
+    String getTimeoutServerPort();
 }

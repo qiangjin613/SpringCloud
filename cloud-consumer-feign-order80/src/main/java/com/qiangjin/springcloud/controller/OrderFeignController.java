@@ -20,4 +20,12 @@ public class OrderFeignController {
     public CommonResult<PaymentDo> getPayment(@PathVariable("id") Long id) {
         return paymentFeignService.getPaymentById(id);
     }
+
+    /**
+     * 超时测试
+     */
+    @GetMapping("/timeout")
+    public String getTimeoutServerPort() {
+        return paymentFeignService.getTimeoutServerPort();
+    }
 }
