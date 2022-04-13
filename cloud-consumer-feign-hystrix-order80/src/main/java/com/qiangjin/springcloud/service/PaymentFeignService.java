@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
-@FeignClient("CLOUD-PROVIDER-HYSTRIX-PAYMENT-SERVICE")
+@FeignClient(value = "CLOUD-PROVIDER-HYSTRIX-PAYMENT-SERVICE")
 @RequestMapping("/hystrix/payment")
 public interface PaymentFeignService {
 

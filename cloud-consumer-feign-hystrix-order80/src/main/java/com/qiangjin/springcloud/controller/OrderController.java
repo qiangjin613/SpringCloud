@@ -1,5 +1,6 @@
 package com.qiangjin.springcloud.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.qiangjin.springcloud.service.PaymentFeignService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/consumer/order")
+@DefaultProperties(defaultFallback = "defaultFallbackMethod")
 public class OrderController {
 
     @Autowired
@@ -24,6 +26,9 @@ public class OrderController {
     @Value("${server.port}")
     private String serverPort;
 
+    /**
+     * 普通的方法，不存在服务降级、熔断及限流
+     */
     @GetMapping("/info/{id}")
     public String paymentInfo(@PathVariable("id") Long id) {
         String info = paymentFeignService.paymentInfo(id);
@@ -31,6 +36,18 @@ public class OrderController {
         return info;
     }
 
+    /**
+     * 使用默认的服务降级
+     */
+    @HystrixCommand
+    public String paymentInfoTimeoutOrException() {
+        int i = 6 / 0; /* 抛出异常 */
+        return "wa ha ha ha ha!!";
+    }
+
+    /**
+     * 服务降级的就近原则：使用这里指定的服务降级方法
+     */
     @GetMapping("/info/timeout/{id}")
     @HystrixCommand(fallbackMethod = "timeoutFallbackMethod", commandProperties = {
             /* 超时的设置 */
@@ -52,5 +69,13 @@ public class OrderController {
                 ", Server Port: " + serverPort +
                 ", thread: " + Thread.currentThread().getName() +
                 " 调用 timeoutFallbackMethod, id: " + id;
+    }
+
+    /**
+     * 全局/默认的 Fallback 方法
+     */
+    public String defaultFallbackMethod(Throwable throwable) {
+        throwable.printStackTrace();
+        return "进行默认服务降级，Thread：" + Thread.currentThread().getName();
     }
 }

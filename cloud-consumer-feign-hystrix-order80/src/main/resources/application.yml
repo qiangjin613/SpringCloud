@@ -28,16 +28,16 @@ eureka:
     # 访问路径可以显式 IP 地址
     prefer-ip-address: true
 
-#feign:
-#  hystrix:
-#    # 必须设置true，否则会交给ribbon
-#    enabled: true
-ribbon:
-  # 设置 feign 客户端超时时间
-  # 建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
-  ReadTimeout: 5000
-  # 建立连接后从服务器读取到可用资源所用的时间
-  ConnectTimeout: 5000
+feign:
+  hystrix:
+    # 必须设置true，否则会交给ribbon
+    enabled: true
+#ribbon:
+#  # 设置 feign 客户端超时时间
+#  # 建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
+#  ReadTimeout: 5000
+#  # 建立连接后从服务器读取到可用资源所用的时间
+#  ConnectTimeout: 5000
 
 logging:
   level:
