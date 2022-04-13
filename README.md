@@ -3,6 +3,7 @@
 注意：
 
 1. 注意：当使用 Ribbon + RestTemplate 并且使用了负载均衡 `@LoadBalanced` 时，getForObject() 的 `String url` 参数不能为地址。否则，抛出：`java.lang.IllegalStateException: No instances available for 192.168.XXX.XXX` 异常！
+2. 注意feign-hystrix、ribbon 对 hystrix 的影响：在使用了 open feign + hystrix 的项目中，如果配置文件属性 `feign.hystrix.enabled=true` 则代表了使用 hystrix 来进行超时控制（服务降级），这时使用注解 `@HystrixCommand` 来控制服务降级是会不生效的。推荐的做法是 `feign.hystrix.enabled=false`，即默认值，然后再 Ribbon 中设置超时时间为尽可能大，这时再使用注解 `@HystrixCommand` 来控制服务降级是生效的（详见：module：`cloud-consumer-feign-hystrix-order80`）
 
 ## 1. 搭建父项目
 
