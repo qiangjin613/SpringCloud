@@ -32,12 +32,26 @@ feign:
   hystrix:
     # 必须设置true，否则会交给ribbon
     enabled: true
-#ribbon:
-#  # 设置 feign 客户端超时时间
-#  # 建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
-#  ReadTimeout: 5000
-#  # 建立连接后从服务器读取到可用资源所用的时间
-#  ConnectTimeout: 5000
+
+hystrix:
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          enabled: true
+          # 如果enabled设置为false，则请求超时交给ribbon控制,此时@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")不起效
+          # 如果enabled设置为true, 则hystrix也有对超时的控制权，@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")起效果
+          # 且如果enabled设置为true，ribbon，hystrix都有对请求超时的控制权，且控制效果一样
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  # 设置 feign 客户端超时时间
+  # 建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
+  ReadTimeout: 5000
+  # 建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 5000
 
 logging:
   level:

@@ -40,6 +40,7 @@ public class OrderController {
      * 使用默认的服务降级
      */
     @HystrixCommand
+    @GetMapping("/info/ex/{id}")
     public String paymentInfoTimeoutOrException() {
         int i = 6 / 0; /* 抛出异常 */
         return "wa ha ha ha ha!!";
@@ -51,7 +52,7 @@ public class OrderController {
     @GetMapping("/info/timeout/{id}")
     @HystrixCommand(fallbackMethod = "timeoutFallbackMethod", commandProperties = {
             /* 超时的设置 */
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "2000")
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "4000")
     })
     public String paymentInfoTimeout(@PathVariable("id") Long id) {
         String infoTimeout = paymentFeignService.paymentInfoTimeout(id);
@@ -78,4 +79,25 @@ public class OrderController {
         throwable.printStackTrace();
         return "进行默认服务降级，Thread：" + Thread.currentThread().getName();
     }
+
+    /**
+     * -------------------- 服务熔断 -----------------------------
+     */
+    @HystrixCommand(fallbackMethod = "circuitBreakerFallback", commandProperties = {
+
+    })
+    public String paymentCircuitBreaker(@PathVariable("id") Long id) {
+        if (id < 0) {
+            throw new RuntimeException("id 不能为负数");
+        }
+        return "Application Name: " + applicationName +
+                ", Server Port: " + serverPort +
+                ", thread: " + Thread.currentThread().getName() +
+                " 调用 paymentCircuitBreaker, id: " + id;
+    }
+    public String circuitBreakerFallback(@PathVariable("id") Long id, Throwable throwable) {
+        throwable.printStackTrace();
+        return "CircuitBreakerFallback，请稍后重试，id=" + id;
+    }
+
 }

@@ -29,6 +29,7 @@ public class PaymentController {
 
     @GetMapping("/info/timeout/{id}")
     public String paymentInfoTimeout(@PathVariable("id") Long id) {
+        //int i = 10 / 0;
         String infoTimeout = paymentService.paymentInfoTimeout(id);
         log.debug("serverPort:{}, " + infoTimeout, serverPort);
         return infoTimeout;
