@@ -79,25 +79,4 @@ public class OrderController {
         throwable.printStackTrace();
         return "进行默认服务降级，Thread：" + Thread.currentThread().getName();
     }
-
-    /**
-     * -------------------- 服务熔断 -----------------------------
-     */
-    @HystrixCommand(fallbackMethod = "circuitBreakerFallback", commandProperties = {
-
-    })
-    public String paymentCircuitBreaker(@PathVariable("id") Long id) {
-        if (id < 0) {
-            throw new RuntimeException("id 不能为负数");
-        }
-        return "Application Name: " + applicationName +
-                ", Server Port: " + serverPort +
-                ", thread: " + Thread.currentThread().getName() +
-                " 调用 paymentCircuitBreaker, id: " + id;
-    }
-    public String circuitBreakerFallback(@PathVariable("id") Long id, Throwable throwable) {
-        throwable.printStackTrace();
-        return "CircuitBreakerFallback，请稍后重试，id=" + id;
-    }
-
 }

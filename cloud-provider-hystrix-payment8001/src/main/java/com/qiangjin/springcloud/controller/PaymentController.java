@@ -34,4 +34,11 @@ public class PaymentController {
         log.debug("serverPort:{}, " + infoTimeout, serverPort);
         return infoTimeout;
     }
+
+    @GetMapping("/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Long id) {
+        String breakerInfo = paymentService.paymentCircuitBreaker(id);
+        log.info("paymentCircuitBreaker:{}", breakerInfo);
+        return breakerInfo;
+    }
 }
