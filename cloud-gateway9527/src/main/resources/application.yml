@@ -15,6 +15,7 @@ spring:
           uri: lb://CLOUD-PROVIDER-PAYMENT-SERVICE # 配置动态路由
           predicates: # 断言
             - Path=/payment/** # 路径相匹配的进行路由
+            - After=2017-01-20T17:42:47.789-07:00[America/Denver] # 在指定时间之后这个路由才生效
 
 eureka:
   client:
