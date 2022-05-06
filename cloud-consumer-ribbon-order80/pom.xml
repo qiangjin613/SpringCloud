@@ -42,6 +42,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <!-- 抽取出来的公共部分 -->
         <dependency>
             <groupId>com.qiangjin.springcloud</groupId>
             <artifactId>cloud-common</artifactId>

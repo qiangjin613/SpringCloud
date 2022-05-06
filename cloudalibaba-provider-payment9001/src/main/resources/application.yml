@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: springcloudalibaba-provider-payment
+    name: provider-payment
   cloud:
     nacos:
       discovery:

@@ -1,9 +1,9 @@
 server:
-  port: 9002
+  port: 83
 
 spring:
   application:
-    name: provider-payment
+    name: consumer-order
   cloud:
     nacos:
       discovery:
@@ -15,3 +15,6 @@ management:
     web:
       exposure:
         include: '*'
+
+server-url:
+  nacos-payment-sercer: http://provider-payment
